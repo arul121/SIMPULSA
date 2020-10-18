@@ -1,0 +1,64 @@
+
+<form name="lala" onsubmit="return validateForm()" method="get" action="<?php echo $this->url(array('controller'=>'pulsa', 'action'=>'beli')); ?>" class="mx-auto" >
+    	
+    <div class="row gtr-uniform jumbotron">
+    <div class="col-6">
+    <div >
+    <label>Provider</label>
+    <select class="form-control" name="operator" required="required">
+    <option value="">-- Provider --</option>
+    <option value="001">Telkomsel</option>
+    <option value="003">XL</option>
+    <option value="005">Smartfren</option>
+    <option value="013">Indosat</option>
+    <option value="018">Three</option>
+
+    </select>
+    </div>
+    </div>
+    	
+    <div class="col-6">
+    <div>
+    <label >Nominal</label>
+    <select class="form-control" name="voucher" required="required">
+    <option value="">-- Nominal --</option>
+    <option value="a">Rp.10,000</option>
+    <option value="b">Rp.25,000</option>
+    <option value="c">Rp.50,000</option>
+    <option value="d">Rp.100,000</option>
+
+    </select>
+    </div>
+    </div>
+    	
+    <div class="col-12" style="margin-top: 10px">
+    <div class="form-group">
+        <center><label >Nomor HP</label></center>
+    <label class="sr-only">Nomor HP</label>
+    <input type="number" name="no_hp" class="form-control " placeholder="08XXXXXX" required="required" autocomplete="off" style="-moz-appearance:textfield">
+    </div>
+     
+
+    <ul class="actions navbar-nav list-group list-group-horizontal row">
+    <div class="col-6">
+    <li class="nav-item"><input type="submit" value="Submit" class="btn btn-outline-secondary btn-block" /></li>
+    </div>
+    <div class="col-6">
+    <li class="nav-item"><input type="reset" value="Reset" class="btn btn-outline-secondary btn-block" /></li>
+    </div>
+    </ul>
+    </div>
+    	
+
+    </div>
+    </form>
+
+    	
+
+    	
+
+
+
+
+
+

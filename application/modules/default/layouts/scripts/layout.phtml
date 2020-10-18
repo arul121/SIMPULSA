@@ -1,0 +1,61 @@
+<?php 
+$this->headMeta()->appendHttpEquiv('Content-Type', 'text/html;charset=utf-8');
+$this->headTitle()->setSeparator(' - ');
+$this->headTitle('Beli Pulsa Dengan Simple!');
+echo $this->doctype(); ?>
+<html style="overflow-x: hidden;">
+<head >
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <?php echo $this->headMeta(); ?> 
+    <?php echo $this->headTitle(); ?> 
+  </head>
+    <div style="margin:0;">
+  <div  style="margin-bottom:0; margin-right:15px;">
+<header  style="margin-top:0">
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark row rounded">
+
+    <div class="head col-md-1">
+     
+        <div class="navbar-brand">
+           <a  href="<?php echo $this->url(array('controller'=>'index', 'action'=> 'index'));?>" class="logo">
+               <img style="height: 100px;"class="logo" src="/logophone.png" alt="logo" />
+           
+        </div>
+
+    </div>
+            <div class="title col-md-8">
+            <a  href="<?php echo $this->url(array('controller'=>'index', 'action'=> 'index'));?>" class="brand" style="outline: none !important;box-shadow:none !important">
+            <h3 class="navbar-brand"><img style="height: 100px;"class="logo" src="/logo.png" alt="OT" /></h3>
+            </a>
+        </div>
+    <div class="collapse navbar-collapse col-md-3 " id="collapsibleNavbar">
+      <ul class="navbar-nav ">
+        <li class="nav-item "><a class="nav-link" href="<?php echo $this ->url(array('controller' => 'index', 'action' => 'stats'));?>">RIWAYAT</a></li>
+        <li class="nav-item "> <a class="nav-link" style="pointer-events:none" disabled >|</a> </li>
+        <li class="nav-item"><a class="nav-link" href="<?php echo $this ->url(array('controller' => 'index', 'action' => 'login'));?>">ADMIN</a></li>
+      </ul>
+    </div>
+
+</nav>
+
+</header>
+</div>
+
+<!-- ========================================================================= -->
+<body>
+<div class="container">
+<div id="content" style="margin-top: 10px; margin-bottom: 10px">
+    <?php echo $this->layout()->content; ?>
+</div>
+</div>
+
+</body>
+<!-- ======================================================================== -->
+<div class="jumbotron text-center  bg-dark" style="margin-bottom:0;margin-right:0 ">
+  <p class="text-light">© 2020 Muhammad Syahrul Wirawan,  All Right Reserved.</p>
+</div>
+</div>
+</html>

@@ -1,0 +1,129 @@
+<?php 
+        error_reporting(E_ALL ^ E_DEPRECATED);
+        $op = $_GET['operator'];
+        $vo = $_GET['voucher'];
+        $no = $_GET['no_hp'];
+        if (strlen($no) <= 11 || strlen($no) >= 13) {
+        header('Refresh:0.00001;  ../../');
+        ?><script>alert('Jumlah nomor salah, mohon coba lagi!');</script><?php
+        }
+        else{
+        $nof = substr($no ,0, 4);
+        $no1 = substr($no , 4);
+        $nob = str_pad($no1,10," ",STR_PAD_RIGHT);
+    include 'belii.php';
+                $ea = $_GET['voucher'];
+                
+                switch($ea){
+                    
+                    case 'a':
+                        $ea = '10.000';
+                    break;
+                    case "b":
+                        $ea = '25.000';
+                    break;
+                    case 'c':
+                        $ea = '50.000';
+                    break;
+                    case 'd':
+                        $ea = '100.000';
+                    break;
+                }
+                ?>
+                
+                 <?php 
+                $eo = $_GET['operator'];
+                
+                switch($eo){
+                    
+                    case '001':
+                        $eo = 'Telkomsel';
+                    break;
+                    case "003":
+                        $eo = 'XL';
+                    break;
+                    case '005':
+                        $eo = 'Smartfren';
+                    break;
+                    case '013':
+                        $eo = 'Indosat';
+                    break;
+                    case '018':
+                        $eo = 'Three';
+                        break;
+                }
+                
+                ?>
+                
+                
+                
+                
+               
+
+
+
+ <?php 
+       if($ea == 25.000 && $eo == 'Three'){?>
+                    <div class="jumbotron row ">
+                    <div class="col-12">
+                        <center>
+                    <h1>Maaf, Produk sedang tidak tersedia.</h1>
+                        </center>
+                    </div>          
+      
+                         <div class="col-12">
+                        <br>
+                        <br>
+                        <br> 
+                          
+                         <center><a href="<?php echo $this->url(array('controller'=>'pulsa', 'action' => 'gagal'));?>" class="btn btn-outline-secondary btn-block" role="button">Pilih produk lainnya</a></center>
+                         </div>
+                    </div>
+<?php 
+                }else{
+                    ?>
+                    <div class="jumbotron row">
+					<div class="col-12">
+						<header>
+							<center><h1>Konfirmasi</h1></center>
+						</header>
+						<form >
+                            <div class="form-group">
+                              <label for="email">Provider:</label>
+                              <input class="form-control"  placeholder="<?php echo $eo;?>" disabled>
+                            </div>
+                            <div class="form-group">
+                              <label for="pwd">Nominal:</label>
+                              <input class="form-control" placeholder="<?php echo $ea;?>" disabled>
+                            </div>
+                            <div class="form-group">
+                              <label for="pwd">No. HP:</label>
+                              <input class="form-control" placeholder="<?php echo $_GET['no_hp']?>" disabled>
+                            </div>
+                        
+                          </form>
+						
+					</div>
+
+           
+
+           
+            <div class="col-6">
+             <form method="get" action="<?php echo $this->url(array('controller'=>'pulsa', 'action' => 'konfirmasi'));?>">
+             <center><input type="submit" value="Bayar" class="btn btn-outline-secondary btn-block" /></center>
+             </div>
+             <div class="col-6">
+             <center><a href="<?php echo $this->url(array('controller'=>'pulsa', 'action' => 'gagal'));?>" class="btn btn-outline-secondary btn-block" role="button">Gagalkan</a></center>
+             </div>
+
+                </div>
+
+                    <?php 
+                }
+                
+                
+}
+?>
+                                                    
+                                            
+			

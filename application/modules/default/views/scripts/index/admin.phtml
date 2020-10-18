@@ -1,0 +1,103 @@
+<?php
+error_reporting(0);
+$databaseHost = 'localhost';
+$databaseName = 'data';
+$databaseUsername = 'root';
+$databasePassword = '';
+
+$mysqli = mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $databaseName);
+
+        $username = $_GET['username'];
+        $password = $_GET['password'];
+
+        $sql = "SELECT count(*) as cntUser from users where username='$username' and password= '$password'";
+		$result = mysqli_query($mysqli, $sql);
+		$sql3 = "SELECT * from users where username='$username' and password= '$password'";
+		$result3 = mysqli_query($mysqli, $sql3);
+		$row3 = mysqli_fetch_array($result3);
+		$row = mysqli_fetch_array($result);
+		$count = $row['cntUser'];
+
+if($count <= 0){
+		header('Refresh:0.00001;  login');
+        ?><script>alert('Password dan Kata Sandi salah, mohon coba lagi!');</script><?php
+        }else{
+        	?>
+        	    <center> <h1> Selamat Datang  <a href="edit?id=<?php echo $row3['id']?>&stat="><?php echo  $row3['username']?></a>!</h1> </center>  
+        	<?php
+		$sql1 = "SELECT operator, nohp, nominal,tanggal,SN FROM data48 ORDER BY tanggal DESC";
+		$result1 = mysqli_query($mysqli, $sql1);
+
+
+		?>
+		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<style >
+		  thead{
+		    background-color: #E9ECEF;
+		  }
+		</style>
+		<div class="table-responsive-sm">        
+		  <table class="table table-bordered">
+		    <thead class="thead">
+		    	<tr>
+		    		<th colspan="5"><center><a href="export">Export</a></center></th>
+		    	</tr>
+		      <tr>
+		        <th>Waktu</th>
+		        <th>Nomer HP</th>
+		        <th>Harga*</th>
+		        <th>Serial Number</th>
+		        <th>Aksi</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		    <?php 
+		   
+		    while($rows=mysqli_fetch_assoc($result1)) {
+		    $nmnl = ltrim($rows['nominal'],0) + 100;
+		    ?>
+		      <tr>
+		        <td><?php echo  $rows['tanggal']?></td>
+		        <td><?php echo  $rows['operator'].ltrim($rows['nohp'])?></td>
+		        <td>Rp<?php echo number_format($nmnl,2,".",",")  ?></td>
+		        <td><?php echo  $rows['SN']?></td>
+		        <td><a class="hapus" href=" delete?tgl=<?php echo $rows['tanggal']?>&id=<?php echo $row3['id']?>">Hapus</a></td>
+
+		      </tr>
+		      <?php 
+		    }
+		    ?>
+		    </tbody>
+		  </table>
+		  <small><p class="font-weight-lighter small text-muted">* sudah termasuk biaya admin (Rp. 100)</p></small>
+		  </div>
+		  <?php
+        }
+        ?>
+        <script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="../js/materialize.min.js"></script>
+	<script type="text/javascript">
+	  	$(document).ready(function(){
+	    	$('.collapsible').collapsible();
+	    	$(".button-collapse").sideNav();
+		});
+	</script>
+	<script>
+        $(".hapus").click(function () {
+        var jawab = confirm("Anda Yakin Ingin Menghapus Transaksi ini ?");
+        if (jawab === true) {
+        // konfirmasi
+            var hapus = false;
+            if (!hapus) {
+                hapus = true;
+                $.post('delete.php', {id: $(this).attr('data-id')},
+                function (data) {
+                    alert(data);
+                });
+                hapus = false;
+            }
+        } else {
+            return false;
+        }
+        });
+      </script>

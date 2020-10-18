@@ -1,0 +1,57 @@
+<?php
+/* 
+author: arul
+date  : 20150713
+*/
+
+include 'inq_test.php';
+$iso=$res_srv;
+
+include 'parsing.php';
+error_reporting(E_ALL ^ E_DEPRECATED);
+// echo $data39;
+$nohp = $operator.(trim($number));
+$tot = $nom+$badmin;
+    if ($data39 == 00){
+    ?>
+    </pre>
+    <div class="jumbotron">
+    <center><h1>Transaksi Berhasil!</h1></center>
+    						<form >
+    
+                                <div class="form-group">
+                                  <label for="pwd">No. HP :</label>
+                                  <input class="form-control" placeholder="<?php echo $nohp?>" disabled>
+                                </div>
+                                <div class="form-group">
+                                  <label for="pwd">Total Harga (sudah termasuk biaya admin) :</label>
+                                  <input class="form-control" placeholder="<?php echo $tot;?>" disabled>
+                                </div>
+                          </form>
+                            
+    
+        
+        <div class="col-12">  
+        <br>       
+            <center><a href="<?php echo $this->url(array('controller'=>'index', 'action' => 'index'));?>" class="btn btn-outline-secondary btn-block" role="button">Selesai</a></center>
+        </div>
+        </div>
+        <?php 
+        
+        $datu = $data[48];
+        $sql = "INSERT INTO data48 (data,operator,nohp,nominal,tanggal,SN) VALUES ('$datu','$operator','$number','$nom','$Waktu','$SN')";
+        $query = mysqli_query($mysqli,$sql);
+        if (mysqli_query($mysqli,$sql)) {
+            echo "New record created successfully";
+        } else {
+            mysqli_close($mysqli);
+        }
+    }else{
+        ?>
+        <div class="jumbotron">
+        <h1> Transaksi gagal!</h1>
+        <center><a href="<?php echo $this->url(array('controller'=>'index', 'action' => 'index'));?>" class="btn btn-outline-secondary btn-block" role="button">Selesai</a></center>
+        <?php 
+    }
+            
+?>

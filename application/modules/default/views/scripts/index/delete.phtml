@@ -1,0 +1,28 @@
+<?php
+// include database connection file
+$databaseHost = 'localhost';
+$databaseName = 'data';
+$databaseUsername = 'root';
+$databasePassword = '';
+
+$mysqli = mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $databaseName);
+$id = $_GET['id'];
+$sql3 = "SELECT username,password from users where id=$id";
+$result3 = mysqli_query($mysqli, $sql3);
+$row3 = mysqli_fetch_array($result3);
+ 
+// Get id from URL to delete that user
+$tgl = $_GET['tgl'];
+ 
+// Delete user row from table based on given id
+$result = mysqli_query($mysqli, "DELETE FROM data48 WHERE tanggal=$tgl");
+
+ 
+// After delete redirect to Home, so that latest user list will be displayed.
+$qq =   $row3['username'];
+$mm =   $row3['password'];
+
+?><script>alert('Riwayat Berhasil di Hapus!');</script><?php
+header('Refresh:0.0001;  admin'."?".'username='.$qq.'&password='.$mm);
+
+?>

@@ -1,0 +1,48 @@
+<?php
+$databaseHost = 'localhost';
+$databaseName = 'data';
+$databaseUsername = 'root';
+$databasePassword = '';
+
+$mysqli = mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $databaseName);
+
+$sql = "SELECT operator, nohp, nominal,tanggal,SN FROM data48 ORDER BY tanggal DESC";
+$result = mysqli_query($mysqli, $sql);
+
+
+?>
+<style >
+  thead{
+    background-color: #E9ECEF;
+  }
+</style>
+<div class="table-responsive-sm">        
+  <table class="table table-bordered">
+    <thead class="thead">
+      <tr>
+        <th>Waktu</th>
+        <th>Nomer HP</th>
+        <th>Harga*</th>
+        <th>Serial Number</th>
+      </tr>
+    </thead>
+    <tbody>
+    <?php 
+   
+    while($rows=mysqli_fetch_assoc($result)) {
+    $nmnl = ltrim($rows['nominal'],0) + 100;
+    ?>
+      <tr>
+        <td><?php echo  $rows['tanggal']?></td>
+        <td><?php echo  $rows['operator'].ltrim($rows['nohp'])?></td>
+        <td>Rp<?php echo number_format($nmnl,2,".",",")  ?></td>
+        <td><?php echo  $rows['SN']?></td>
+
+      </tr>
+      <?php 
+    }
+    ?>
+    </tbody>
+  </table>
+  <small><p class="font-weight-lighter small text-muted">* sudah termasuk biaya admin (Rp. 100)</p></small>
+  </div>
